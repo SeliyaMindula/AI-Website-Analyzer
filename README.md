@@ -84,5 +84,40 @@ cd frontend && npm run build
 
 ## Deployment
 
-- **Frontend:** Vercel — set `NEXT_PUBLIC_API_URL`
-- **Backend:** Railway / Render — set `CORS_ORIGIN` and secrets
+**Production domain:** [www.webpulsesai.com](https://www.webpulsesai.com)
+
+Full step-by-step guide: **[docs/DEPLOY.md](docs/DEPLOY.md)** (Vercel + Railway + DNS).
+
+Quick reference:
+
+| Service | Host | Domain |
+|---------|------|--------|
+| Frontend (Next.js) | Vercel | `www.webpulsesai.com` |
+| Backend (NestJS) | Railway or Render | `api.webpulsesai.com` |
+
+### DNS (at your registrar)
+
+| Type | Name | Value |
+|------|------|-------|
+| CNAME | `www` | Vercel target (from Vercel dashboard) |
+| CNAME | `api` | Railway/Render target |
+| A or ALIAS | `@` | Redirect apex → `www` (or Vercel apex record) |
+
+### Environment (production)
+
+**Frontend (Vercel)**
+
+| Variable | Value |
+|----------|-------|
+| `NEXT_PUBLIC_API_URL` | `https://api.webpulsesai.com` |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.webpulsesai.com` |
+
+**Backend (Railway / Render)**
+
+| Variable | Value |
+|----------|-------|
+| `CORS_ORIGIN` | `https://www.webpulsesai.com` |
+| `GOOGLE_PSI_API_KEY` | your PSI key |
+| `PORT` | platform default (often injected) |
+
+Local dev stays on `localhost` — do not change `.env` / `.env.local` until you deploy.

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
 import { AnalyzeModule } from './analyze/analyze.module';
 import { DnsModule } from './dns/dns.module';
 import { IpModule } from './ip/ip.module';
@@ -9,6 +10,7 @@ import { SslModule } from './ssl/ssl.module';
 import { UptimeModule } from './uptime/uptime.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     AnalyzeModule,

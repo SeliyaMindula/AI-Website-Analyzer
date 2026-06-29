@@ -14,8 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.webpulsesai.com'),
   title: "WebPulse AI",
-  description: "Pulse-check the web — site analysis, internet speed, DNS, SSL, and uptime tools.",
+  description: "Pulse-check the web — site analysis, internet speed, DNS, SSL, uptime, and IP geolocation tools.",
+  openGraph: {
+    title: "WebPulse AI",
+    description: "Pulse-check the web — site analysis, internet speed, DNS, SSL, uptime, and IP geolocation tools.",
+    siteName: "WebPulse AI",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
