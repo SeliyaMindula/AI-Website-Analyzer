@@ -86,21 +86,21 @@ cd frontend && npm run build
 
 **Production domain:** [www.webpulsesai.com](https://www.webpulsesai.com)
 
-Full step-by-step guide: **[docs/DEPLOY.md](docs/DEPLOY.md)** (Vercel + Railway + DNS).
+Full step-by-step guide: **[docs/DEPLOY.md](docs/DEPLOY.md)** — **free hosting** with Vercel + Render ($0/month).
 
-Quick reference:
+| Service | Host | Cost | Domain |
+|---------|------|------|--------|
+| Frontend (Next.js) | Vercel | Free | `www.webpulsesai.com` |
+| Backend (NestJS) | Render | Free | `api.webpulsesai.com` |
 
-| Service | Host | Domain |
-|---------|------|--------|
-| Frontend (Next.js) | Vercel | `www.webpulsesai.com` |
-| Backend (NestJS) | Railway or Render | `api.webpulsesai.com` |
+Render free tier: API sleeps after 15 min idle; first request may take ~1 min to wake up.
 
 ### DNS (at your registrar)
 
 | Type | Name | Value |
 |------|------|-------|
 | CNAME | `www` | Vercel target (from Vercel dashboard) |
-| CNAME | `api` | Railway/Render target |
+| CNAME | `api` | Render target (from Render dashboard) |
 | A or ALIAS | `@` | Redirect apex → `www` (or Vercel apex record) |
 
 ### Environment (production)
@@ -112,11 +112,11 @@ Quick reference:
 | `NEXT_PUBLIC_API_URL` | `https://api.webpulsesai.com` |
 | `NEXT_PUBLIC_SITE_URL` | `https://www.webpulsesai.com` |
 
-**Backend (Railway / Render)**
+**Backend (Render)**
 
 | Variable | Value |
 |----------|-------|
-| `CORS_ORIGIN` | `https://www.webpulsesai.com` |
+| `CORS_ORIGIN` | `https://www.webpulsesai.com,https://webpulsesai.com` |
 | `GOOGLE_PSI_API_KEY` | your PSI key |
 | `PORT` | platform default (often injected) |
 
