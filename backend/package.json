@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "cheerio": "^1.2.0",
@@ -63,7 +64,10 @@
       "ts"
     ],
     "rootDir": "src",
-    "roots": ["<rootDir>", "<rootDir>/../test"],
+    "roots": [
+      "<rootDir>",
+      "<rootDir>/../test"
+    ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

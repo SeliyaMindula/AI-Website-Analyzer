@@ -15,7 +15,9 @@ describe('RuleBasedSummaryProvider', () => {
   it('generates grade and recommendations', async () => {
     const summary = await provider.generate(baseReport);
     expect(['A', 'B', 'C', 'D', 'F']).toContain(summary.grade);
-    expect(summary.overview.length).toBeGreaterThan(10);
+    expect(summary.overview).toContain('SEO:');
+    expect(summary.overview).toContain('Security:');
+    expect(summary.overview).toContain('Speed:');
     expect(summary.recommendations.length).toBeGreaterThan(0);
   });
 });

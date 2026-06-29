@@ -9,7 +9,6 @@ import { SeoCard } from '@/components/SeoCard';
 import { SpeedCard } from '@/components/SpeedCard';
 import { SecurityCard } from '@/components/SecurityCard';
 import { TechStackCard } from '@/components/TechStackCard';
-import { DownloadPdfButton } from '@/components/DownloadPdfButton';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -43,10 +42,7 @@ export default function Home() {
       {error && <p className="text-center text-red-400">{error}</p>}
       {report && (
         <section className="max-w-6xl mx-auto space-y-6">
-          <div className="flex justify-between items-start">
-            <SummaryCard report={report} />
-            <DownloadPdfButton report={report} />
-          </div>
+          <SummaryCard report={report} />
           <div className="grid md:grid-cols-2 gap-4">
             <SeoCard data={report.seo} />
             <SpeedCard data={report.speed} />

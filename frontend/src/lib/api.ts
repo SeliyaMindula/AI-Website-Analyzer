@@ -2,6 +2,36 @@ import { AnalysisReport } from '@/types/analysis';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
+function parsePdfFilename(contentDisposition: string | null): string {
+  const match = contentDisposition?.match(/filename="(.+)"/);
+  return match?.[1] ?? 'website-analysis.pdf';
+}
+
+async function savePdfBlob(blob: Blob, filename: string): Promise<void> {
+  if (typeof window !== 'undefined' && 'showSaveFilePicker' in window) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: 'PDF report', accept: { 'application/pdf': ['.pdf'] } }],
+      });
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
+      throw err;
+    }
+  }
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export async function analyzeUrl(url: string): Promise<AnalysisReport> {
   const res = await fetch(`${API_URL}/analyze`, {
     method: 'POST',
@@ -23,13 +53,6 @@ export async function downloadPdfReport(report: AnalysisReport): Promise<void> {
   });
   if (!res.ok) throw new Error('Could not generate PDF. Please try again.');
   const blob = await res.blob();
-  const disposition = res.headers.get('Content-Disposition') ?? '';
-  const match = disposition.match(/filename="(.+)"/);
-  const filename = match?.[1] ?? 'website-analysis.pdf';
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
+  const filename = parsePdfFilename(res.headers.get('Content-Disposition'));
+  await savePdfBlob(blob, filename);
 }
