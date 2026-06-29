@@ -1,15 +1,17 @@
 'use client';
 
-export function UrlForm({
+export function DomainForm({
   onSubmit,
   loading,
-  submitLabel = 'Analyze',
-  loadingLabel = 'Analyzing…',
+  submitLabel = 'Lookup',
+  loadingLabel = 'Looking up…',
+  placeholder = 'example.com',
 }: {
-  onSubmit: (url: string) => void;
+  onSubmit: (domain: string) => void;
   loading: boolean;
   submitLabel?: string;
   loadingLabel?: string;
+  placeholder?: string;
 }) {
   return (
     <form
@@ -17,14 +19,14 @@ export function UrlForm({
       onSubmit={(e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
-        onSubmit(String(fd.get('url') ?? ''));
+        onSubmit(String(fd.get('domain') ?? ''));
       }}
     >
       <input
-        name="url"
-        type="url"
+        name="domain"
+        type="text"
         required
-        placeholder="https://example.com"
+        placeholder={placeholder}
         className="flex-1 rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-white"
       />
       <button type="submit" disabled={loading} className="rounded-lg bg-indigo-600 px-6 py-2 font-medium disabled:opacity-50">

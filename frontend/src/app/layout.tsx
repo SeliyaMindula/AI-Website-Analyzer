@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Website Analyzer",
-  description: "SEO, speed, security, and tech stack analysis in one report.",
+  title: "WebPulse AI",
+  description: "Pulse-check the web — site analysis, internet speed, DNS, SSL, and uptime tools.",
 };
 
 export default function RootLayout({
@@ -27,7 +28,10 @@ export default function RootLayout({
       lang="en"
       className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">{children}</body>
+      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }

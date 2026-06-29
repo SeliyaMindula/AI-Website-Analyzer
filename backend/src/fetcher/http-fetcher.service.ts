@@ -19,7 +19,7 @@ export class HttpFetcherService {
         const response = await fetch(currentUrl, {
           signal: controller.signal,
           redirect: 'manual',
-          headers: { 'User-Agent': 'AI-Website-Analyzer/1.0' },
+          headers: { 'User-Agent': 'WebPulse-AI/1.0' },
         });
         clearTimeout(timer);
         if (response.status >= 300 && response.status < 400) {

@@ -1,56 +1,19 @@
-'use client';
+import { ToolCard, tools } from '@/components/ToolCard';
 
-import { useState } from 'react';
-import { analyzeUrl } from '@/lib/api';
-import { AnalysisReport } from '@/types/analysis';
-import { UrlForm } from '@/components/UrlForm';
-import { SummaryCard } from '@/components/SummaryCard';
-import { SeoCard } from '@/components/SeoCard';
-import { SpeedCard } from '@/components/SpeedCard';
-import { SecurityCard } from '@/components/SecurityCard';
-import { TechStackCard } from '@/components/TechStackCard';
-
-export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [report, setReport] = useState<AnalysisReport | null>(null);
-
+export default function HubPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100 p-8">
-      <header className="mb-8 text-center">
-        <h1 className="text-3xl font-bold">AI Website Analyzer</h1>
-        <p className="text-zinc-400 mt-2">SEO, speed, security, and tech stack — in one report.</p>
-      </header>
-      <div className="flex justify-center mb-8">
-        <UrlForm
-          loading={loading}
-          onSubmit={async (url) => {
-            setLoading(true);
-            setError(null);
-            setReport(null);
-            try {
-              setReport(await analyzeUrl(url));
-            } catch (e) {
-              setError(e instanceof Error ? e.message : 'Something went wrong');
-            } finally {
-              setLoading(false);
-            }
-          }}
-        />
+    <main className="flex-1 p-8">
+      <div className="text-center mb-12 max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold tracking-tight">
+          WebPulse <span className="text-indigo-400">AI</span>
+        </h1>
+        <p className="text-zinc-400 mt-3 text-lg">Pulse-check the web — sites, speed, DNS, SSL &amp; uptime.</p>
       </div>
-      {loading && <p className="text-center text-zinc-400">Analyzing… speed checks can take up to 30 seconds</p>}
-      {error && <p className="text-center text-red-400">{error}</p>}
-      {report && (
-        <section className="max-w-6xl mx-auto space-y-6">
-          <SummaryCard report={report} />
-          <div className="grid md:grid-cols-2 gap-4">
-            <SeoCard data={report.seo} />
-            <SpeedCard data={report.speed} />
-            <SecurityCard data={report.security} />
-            <TechStackCard data={report.techStack} />
-          </div>
-        </section>
-      )}
+      <div className="max-w-4xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tools.map((tool) => (
+          <ToolCard key={tool.href} {...tool} />
+        ))}
+      </div>
     </main>
   );
 }
