@@ -14,8 +14,8 @@ export default function UptimePage() {
   return (
     <main className="flex-1 p-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">Uptime Ping</h1>
-        <p className="text-zinc-400 mt-2">Check if a site is up and measure response time.</p>
+        <h1 className="text-3xl font-bold text-foreground">Uptime Ping</h1>
+        <p className="text-muted mt-2">Check if a site is up and measure response time.</p>
       </div>
       <div className="flex justify-center mb-8">
         <UrlForm
@@ -36,7 +36,7 @@ export default function UptimePage() {
           }}
         />
       </div>
-      {error && <p className="text-center text-red-400">{error}</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
       {result && <UptimeResults result={result} />}
     </main>
   );

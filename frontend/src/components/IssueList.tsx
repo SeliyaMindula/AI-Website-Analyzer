@@ -3,11 +3,11 @@ import { Issue, IssueSeverity } from '@/types/analysis';
 export function severityColor(severity: IssueSeverity): string {
   switch (severity) {
     case 'error':
-      return 'text-red-400';
+      return 'text-red-600';
     case 'warning':
-      return 'text-amber-400';
+      return 'text-amber-600';
     case 'info':
-      return 'text-zinc-400';
+      return 'text-muted';
   }
 }
 

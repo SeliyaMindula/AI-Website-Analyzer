@@ -25,9 +25,9 @@ export function UrlForm({
         type="url"
         required
         placeholder="https://example.com"
-        className="flex-1 rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-2 text-white"
+        className="wp-input"
       />
-      <button type="submit" disabled={loading} className="rounded-lg bg-indigo-600 px-6 py-2 font-medium disabled:opacity-50">
+      <button type="submit" disabled={loading} className="wp-btn">
         {loading ? loadingLabel : submitLabel}
       </button>
     </form>

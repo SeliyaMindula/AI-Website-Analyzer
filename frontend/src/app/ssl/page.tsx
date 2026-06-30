@@ -14,8 +14,8 @@ export default function SslPage() {
   return (
     <main className="flex-1 p-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">SSL Certificate Check</h1>
-        <p className="text-zinc-400 mt-2">Verify certificate validity and expiry.</p>
+        <h1 className="text-3xl font-bold text-foreground">SSL Certificate Check</h1>
+        <p className="text-muted mt-2">Verify certificate validity and expiry.</p>
       </div>
       <div className="flex justify-center mb-8">
         <DomainForm
@@ -36,7 +36,7 @@ export default function SslPage() {
           }}
         />
       </div>
-      {error && <p className="text-center text-red-400">{error}</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
       {result && <SslResults result={result} />}
     </main>
   );

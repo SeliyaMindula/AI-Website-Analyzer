@@ -2,10 +2,10 @@ import { SslCheckResult } from '@/types/tools';
 
 export function SslResults({ result }: { result: SslCheckResult }) {
   return (
-    <div className="max-w-lg mx-auto bg-zinc-900 border border-zinc-800 rounded-xl p-6 space-y-3">
+    <div className="max-w-lg mx-auto wp-card p-6 space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold">{result.domain}</h3>
-        <span className={result.valid ? 'text-green-400' : 'text-red-400'}>
+        <h3 className="font-semibold text-foreground">{result.domain}</h3>
+        <span className={result.valid ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}>
           {result.valid ? 'Valid' : 'Invalid / Expired'}
         </span>
       </div>
@@ -17,8 +17,8 @@ export function SslResults({ result }: { result: SslCheckResult }) {
       <Row label="TLS protocol" value={result.protocol} />
       {result.altNames.length > 0 && (
         <div>
-          <p className="text-xs text-zinc-500 uppercase mb-1">Alt names</p>
-          <p className="text-sm text-zinc-300">{result.altNames.join(', ')}</p>
+          <p className="text-xs text-muted uppercase mb-1">Alt names</p>
+          <p className="text-sm text-foreground">{result.altNames.join(', ')}</p>
         </div>
       )}
     </div>
@@ -28,8 +28,8 @@ export function SslResults({ result }: { result: SslCheckResult }) {
 function Row({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className="flex justify-between text-sm gap-4">
-      <span className="text-zinc-500 shrink-0">{label}</span>
-      <span className={`text-right break-all ${highlight ? 'text-amber-400' : 'text-zinc-300'}`}>{value}</span>
+      <span className="text-muted shrink-0">{label}</span>
+      <span className={`text-right break-all ${highlight ? 'text-amber-600 dark:text-amber-400' : 'text-foreground'}`}>{value}</span>
     </div>
   );
 }

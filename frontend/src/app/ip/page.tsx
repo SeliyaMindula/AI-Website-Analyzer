@@ -14,8 +14,8 @@ export default function IpPage() {
   return (
     <main className="flex-1 p-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">IP / Geolocation</h1>
-        <p className="text-zinc-400 mt-2">Look up location and network info for a domain or IP address.</p>
+        <h1 className="text-3xl font-bold text-foreground">IP / Geolocation</h1>
+        <p className="text-muted mt-2">Look up location and network info for a domain or IP address.</p>
       </div>
       <div className="flex justify-center mb-8">
         <DomainForm
@@ -37,7 +37,7 @@ export default function IpPage() {
           }}
         />
       </div>
-      {error && <p className="text-center text-red-400">{error}</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
       {result && <IpResults result={result} />}
     </main>
   );

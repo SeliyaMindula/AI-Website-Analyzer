@@ -77,12 +77,12 @@ export function InternetSpeedTest() {
             setPhase(null);
           }
         }}
-        className="w-full rounded-lg bg-indigo-600 px-6 py-3 font-medium disabled:opacity-50 hover:bg-indigo-500 transition-colors"
+        className="w-full wp-btn py-3"
       >
         {phase ? phase : 'Start Speed Test'}
       </button>
 
-      {error && <p className="text-center text-red-400 text-sm">{error}</p>}
+      {error && <p className="text-center text-red-600 text-sm">{error}</p>}
 
       {result && (
         <div className="grid grid-cols-2 gap-3">
@@ -92,9 +92,9 @@ export function InternetSpeedTest() {
             { label: 'Ping', value: `${result.pingMs} ms` },
             { label: 'Jitter', value: `${result.jitterMs} ms` },
           ].map(({ label, value }) => (
-            <div key={label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
-              <p className="text-xs text-zinc-500 uppercase tracking-wide">{label}</p>
-              <p className="text-xl font-semibold mt-1 text-indigo-300">{value}</p>
+            <div key={label} className="wp-card p-4 text-center">
+              <p className="text-xs text-muted uppercase tracking-wide">{label}</p>
+              <p className="text-xl font-semibold mt-1 text-accent">{value}</p>
             </div>
           ))}
         </div>

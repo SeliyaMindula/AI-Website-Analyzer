@@ -14,8 +14,8 @@ export default function DnsPage() {
   return (
     <main className="flex-1 p-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">DNS Lookup</h1>
-        <p className="text-zinc-400 mt-2">View DNS records for any domain.</p>
+        <h1 className="text-3xl font-bold text-foreground">DNS Lookup</h1>
+        <p className="text-muted mt-2">View DNS records for any domain.</p>
       </div>
       <div className="flex justify-center mb-8">
         <DomainForm
@@ -34,7 +34,7 @@ export default function DnsPage() {
           }}
         />
       </div>
-      {error && <p className="text-center text-red-400">{error}</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
       {result && <DnsResults result={result} />}
     </main>
   );

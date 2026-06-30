@@ -23,11 +23,11 @@ export function DownloadPdfButton({ report }: { report: AnalysisReport }) {
           }
         }}
         disabled={loading}
-        className="rounded-lg border border-zinc-600 px-4 py-2 text-sm hover:bg-zinc-800"
+        className="rounded-lg border border-border px-4 py-2 text-sm text-foreground hover:bg-surface-muted transition-colors disabled:opacity-50"
       >
         {loading ? 'Generating…' : 'Download PDF'}
       </button>
-      {error && <p className="text-red-400 text-sm mt-1">{error}</p>}
+      {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
     </div>
   );
 }

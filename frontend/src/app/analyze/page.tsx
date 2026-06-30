@@ -18,8 +18,8 @@ export default function AnalyzePage() {
   return (
     <main className="flex-1 p-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">Analyze Site</h1>
-        <p className="text-zinc-400 mt-2">SEO, PageSpeed, security, tech stack — in one report.</p>
+        <h1 className="text-3xl font-bold text-foreground">Analyze Site</h1>
+        <p className="text-muted mt-2">SEO, PageSpeed, security, tech stack — in one report.</p>
       </div>
       <div className="flex justify-center mb-8">
         <UrlForm
@@ -38,8 +38,8 @@ export default function AnalyzePage() {
           }}
         />
       </div>
-      {loading && <p className="text-center text-zinc-400">Analyzing… speed checks can take up to 30 seconds</p>}
-      {error && <p className="text-center text-red-400">{error}</p>}
+      {loading && <p className="text-center text-muted">Analyzing… speed checks can take up to 30 seconds</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
       {report && (
         <section className="max-w-6xl mx-auto space-y-6">
           <SummaryCard report={report} />
