@@ -16,7 +16,7 @@ export function SiteHeader() {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-accent">
             <Activity className="h-4 w-4" strokeWidth={2.5} />
           </span>
-          WebPulse <span className="text-accent">AI</span>
+          WebPulses <span className="text-accent">AI</span>
         </Link>
         <div className="flex items-center gap-3">
           {!onHub && (

@@ -1,4 +1,4 @@
-# WebPulse AI
+# WebPulses AI
 
 **Pulse-check the web** — site analysis, internet speed, DNS, SSL, uptime, and IP geolocation tools in one platform.
 

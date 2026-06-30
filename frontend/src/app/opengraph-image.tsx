@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
             ⚡
           </div>
           <span style={{ fontSize: 56, fontWeight: 700 }}>
-            WebPulse <span style={{ color: '#2dd4bf' }}>AI</span>
+            WebPulses <span style={{ color: '#2dd4bf' }}>AI</span>
           </span>
         </div>
         <p

@@ -17,7 +17,7 @@ export function SiteFooter() {
           ))}
         </nav>
         <p className="text-center text-xs text-muted mt-6">
-          © {new Date().getFullYear()} WebPulse AI — free website diagnostics tools.
+          © {new Date().getFullYear()} WebPulses AI — free website diagnostics tools.
         </p>
       </div>
     </footer>

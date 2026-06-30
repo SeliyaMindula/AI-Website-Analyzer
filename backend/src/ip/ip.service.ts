@@ -61,7 +61,7 @@ export class IpService {
   private async fetchGeolocation(ip: string): Promise<IpWhoResponse> {
     try {
       const res = await fetch(`https://ipwho.is/${ip}`, {
-        headers: { 'User-Agent': 'WebPulse-AI/1.0' },
+        headers: { 'User-Agent': 'WebPulses-AI/1.0' },
       });
       if (!res.ok) throw new ServiceUnavailableException('Geolocation service unavailable');
       const data = (await res.json()) as IpWhoResponse;

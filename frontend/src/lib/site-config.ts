@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_NAME = 'WebPulse AI';
+export const SITE_NAME = 'WebPulses AI';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.webpulsesai.com';
 export const SITE_DESCRIPTION =
   'Free online tools for website SEO analysis, internet speed tests, DNS lookup, SSL checks, uptime monitoring, and IP geolocation.';
