@@ -91,7 +91,7 @@ Full step-by-step guide: **[docs/DEPLOY.md](docs/DEPLOY.md)** — **free hosting
 | Service | Host | Cost | Domain |
 |---------|------|------|--------|
 | Frontend (Next.js) | Vercel | Free | `www.webpulsesai.com` |
-| Backend (NestJS) | Belmo (no card) or Render/Koyeb | Free | `api.webpulsesai.com` |
+| Backend (NestJS) | Render | Free | `api.webpulsesai.com` |
 
 Render free tier: API sleeps after 15 min idle; first request may take ~1 min to wake up.
 
