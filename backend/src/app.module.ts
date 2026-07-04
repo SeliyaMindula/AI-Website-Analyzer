@@ -5,7 +5,7 @@ import { AnalyzeModule } from './analyze/analyze.module';
 import { DnsModule } from './dns/dns.module';
 import { IpModule } from './ip/ip.module';
 import { ReportModule } from './report/report.module';
-import { SpeedTestModule } from './speed-test/speed-test.module';
+import { HeadersModule } from './headers/headers.module';
 import { SslModule } from './ssl/ssl.module';
 import { UptimeModule } from './uptime/uptime.module';
 
@@ -15,7 +15,7 @@ import { UptimeModule } from './uptime/uptime.module';
     ConfigModule.forRoot({ isGlobal: true }),
     AnalyzeModule,
     ReportModule,
-    SpeedTestModule,
+    HeadersModule,
     DnsModule,
     IpModule,
     SslModule,

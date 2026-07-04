@@ -15,18 +15,16 @@ describe('WebPulse tools (e2e)', () => {
 
   afterAll(() => app.close());
 
-  it('GET /speed-test/ping returns timestamp', () => {
+  it('POST /headers/check returns response headers', () => {
     return request(app.getHttpServer())
-      .get('/speed-test/ping')
-      .expect(200)
-      .expect((res) => expect(res.body.timestamp).toBeDefined());
-  });
-
-  it('GET /speed-test/download returns binary', () => {
-    return request(app.getHttpServer())
-      .get('/speed-test/download?size=1mb')
-      .expect(200)
-      .expect((res) => expect(res.body.length).toBe(1024 * 1024));
+      .post('/headers/check')
+      .send({ url: 'https://example.com' })
+      .expect(201)
+      .expect((res) => {
+        expect(res.body.statusCode).toBe(200);
+        expect(res.body.headers.length).toBeGreaterThan(0);
+        expect(res.body.finalUrl).toContain('example.com');
+      });
   });
 
   it('POST /ip/lookup returns geolocation for a public IP', () => {

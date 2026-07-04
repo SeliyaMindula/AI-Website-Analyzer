@@ -24,6 +24,16 @@ export function SiteHeader() {
               ← All tools
             </Link>
           )}
+          {onHub && (
+            <>
+              <Link href="#diagnostics" className="text-sm text-muted hover:text-accent transition-colors hidden sm:inline">
+                Website
+              </Link>
+              <Link href="#image" className="text-sm text-muted hover:text-accent transition-colors hidden sm:inline">
+                Image
+              </Link>
+            </>
+          )}
           <ThemeToggle />
         </div>
       </div>

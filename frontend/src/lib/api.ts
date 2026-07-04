@@ -1,5 +1,5 @@
 import { AnalysisReport } from '@/types/analysis';
-import { DnsLookupResult, InternetSpeedResult, IpLookupResult, SslCheckResult, UptimeCheckResult } from '@/types/tools';
+import { DnsLookupResult, HeadersCheckResult, IpLookupResult, SslCheckResult, UptimeCheckResult } from '@/types/tools';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
@@ -72,6 +72,10 @@ export async function checkSsl(domain: string): Promise<SslCheckResult> {
 
 export async function checkUptime(url: string): Promise<UptimeCheckResult> {
   return postJson('/uptime/check', { url });
+}
+
+export async function checkHeaders(url: string): Promise<HeadersCheckResult> {
+  return postJson('/headers/check', { url });
 }
 
 export async function lookupIp(query: string): Promise<IpLookupResult> {

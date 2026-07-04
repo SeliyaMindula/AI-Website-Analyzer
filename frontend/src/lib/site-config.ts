@@ -3,17 +3,20 @@ import type { Metadata } from 'next';
 export const SITE_NAME = 'WebPulses AI';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.webpulsesai.com';
 export const SITE_DESCRIPTION =
-  'Free online tools for website SEO analysis, internet speed tests, DNS lookup, SSL checks, uptime monitoring, and IP geolocation.';
+  'Free online tools for website SEO analysis, HTTP headers, DNS, SSL, uptime, IP geolocation, and image editing — background removal, compress, resize, and convert.';
 
 export const SITE_KEYWORDS = [
   'website analyzer',
   'SEO checker',
-  'PageSpeed test',
+  'HTTP headers checker',
   'DNS lookup',
   'SSL certificate check',
   'uptime monitor',
   'IP geolocation',
-  'internet speed test',
+  'remove background',
+  'compress image',
+  'resize image',
+  'convert image',
 ];
 
 export function pageMetadata({
@@ -76,9 +79,13 @@ export const jsonLd = {
 export const ROUTES = [
   { path: '/', priority: 1, changeFrequency: 'weekly' as const },
   { path: '/analyze', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/internet-speed', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/headers', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/dns', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/ssl', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/uptime', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/ip', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/image/remove-background', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/image/compress', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/image/resize', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/image/convert', priority: 0.9, changeFrequency: 'weekly' as const },
 ];

@@ -1,64 +1,7 @@
 import Link from 'next/link';
-import type { LucideIcon } from 'lucide-react';
-import {
-  Activity,
-  Globe,
-  MapPin,
-  ScanSearch,
-  ShieldCheck,
-  Zap,
-} from 'lucide-react';
+import type { ToolItem } from '@/lib/tools-config';
 
-const tools: {
-  href: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}[] = [
-  {
-    href: '/analyze',
-    title: 'Analyze Site',
-    description: 'SEO, PageSpeed, security headers, tech stack, and PDF report.',
-    icon: ScanSearch,
-  },
-  {
-    href: '/internet-speed',
-    title: 'Internet Speed',
-    description: 'Test your connection — download, upload, ping, and jitter.',
-    icon: Zap,
-  },
-  {
-    href: '/dns',
-    title: 'DNS Lookup',
-    description: 'View A, AAAA, MX, CNAME, NS, TXT, and SOA records.',
-    icon: Globe,
-  },
-  {
-    href: '/ssl',
-    title: 'SSL Check',
-    description: 'Certificate validity, issuer, expiry, and TLS version.',
-    icon: ShieldCheck,
-  },
-  {
-    href: '/uptime',
-    title: 'Uptime Ping',
-    description: 'Check if a site is reachable and how fast it responds.',
-    icon: Activity,
-  },
-  {
-    href: '/ip',
-    title: 'IP / Geolocation',
-    description: 'Resolve a domain or IP to location, ISP, and timezone.',
-    icon: MapPin,
-  },
-];
-
-export function ToolCard({
-  href,
-  title,
-  description,
-  icon: Icon,
-}: (typeof tools)[number]) {
+export function ToolCard({ href, title, description, icon: Icon }: ToolItem) {
   return (
     <Link
       href={href}
@@ -72,5 +15,3 @@ export function ToolCard({
     </Link>
   );
 }
-
-export { tools };

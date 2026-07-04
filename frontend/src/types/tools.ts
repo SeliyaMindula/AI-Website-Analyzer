@@ -26,12 +26,12 @@ export interface UptimeCheckResult {
   checkedAt: string;
 }
 
-export interface InternetSpeedResult {
-  downloadMbps: number;
-  uploadMbps: number;
-  pingMs: number;
-  jitterMs: number;
-  testedAt: string;
+export interface HeadersCheckResult {
+  url: string;
+  finalUrl: string;
+  statusCode: number;
+  headers: { name: string; value: string }[];
+  checkedAt: string;
 }
 
 export interface IpLookupResult {
