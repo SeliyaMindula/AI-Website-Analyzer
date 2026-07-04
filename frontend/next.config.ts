@@ -44,7 +44,19 @@ const securityHeaders = [
   },
 ];
 
+const BG_REMOVAL_CDN =
+  'https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist';
+
 const nextConfig: NextConfig = {
+  async rewrites() {
+    // Proxy AI model assets through same origin (public/ files take precedence when present).
+    return [
+      {
+        source: '/bg-removal/:path*',
+        destination: `${BG_REMOVAL_CDN}/:path*`,
+      },
+    ];
+  },
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];
   },
