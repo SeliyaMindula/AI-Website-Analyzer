@@ -20,11 +20,12 @@ if (process.env.NODE_ENV === 'development') {
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
-  `connect-src ${connectSrc.join(' ')}`,
+  `connect-src ${connectSrc.join(' ')} https://staticimgly.com`,
   "worker-src 'self' blob:",
+  "child-src 'self' blob:",
   "font-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",

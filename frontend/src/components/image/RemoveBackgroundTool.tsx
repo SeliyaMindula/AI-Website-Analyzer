@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { ImageUpload } from '@/components/ImageUpload';
 import { downloadBlob, formatBytes } from '@/lib/image-utils';
 
+/** Model assets served from jsDelivr (allowed by our CSP). */
+const MODEL_PUBLIC_PATH =
+  'https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.4.5/dist/';
+
 export function RemoveBackgroundTool() {
   const [phase, setPhase] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -19,18 +23,38 @@ export function RemoveBackgroundTool() {
     });
     setResultBlob(null);
     setOriginalName(file.name);
-    setPhase('Loading AI model (first run may take a moment)…');
+    setPhase('Downloading AI model (~40 MB, first time only)…');
 
     try {
-      const { removeBackground } = await import('@imgly/background-removal');
+      const { removeBackground, preload } = await import('@imgly/background-removal');
+
+      await preload({
+        publicPath: MODEL_PUBLIC_PATH,
+        model: 'isnet_quint8',
+        progress: (key, current, total) => {
+          if (total > 0) {
+            setPhase(`Loading model… ${Math.round((current / total) * 100)}%`);
+          } else {
+            setPhase(`Loading ${key}…`);
+          }
+        },
+      });
+
       setPhase('Removing background…');
       const blob = await removeBackground(file, {
+        publicPath: MODEL_PUBLIC_PATH,
+        model: 'isnet_quint8',
         output: { format: 'image/png' },
       });
       setResultBlob(blob);
       setResultUrl(URL.createObjectURL(blob));
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Background removal failed');
+      const message = e instanceof Error ? e.message : 'Background removal failed';
+      setError(
+        message.includes('fetch')
+          ? 'Could not download the AI model. Check your internet connection and try again.'
+          : message,
+      );
     } finally {
       setPhase(null);
     }
