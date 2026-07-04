@@ -4,8 +4,19 @@ import { useState } from 'react';
 import { ImageUpload } from '@/components/ImageUpload';
 import { downloadBlob, formatBytes } from '@/lib/image-utils';
 
-/** Self-hosted from public/bg-removal (copied at build via scripts/copy-bg-models.mjs). */
-const MODEL_PUBLIC_PATH = '/bg-removal/';
+const LOCAL_PUBLIC_PATH = '/bg-removal/';
+const CDN_PUBLIC_PATH =
+  'https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist/';
+
+async function resolvePublicPath(): Promise<string> {
+  try {
+    const res = await fetch(`${LOCAL_PUBLIC_PATH}resources.json`);
+    if (res.ok) return LOCAL_PUBLIC_PATH;
+  } catch {
+    /* fall through to CDN */
+  }
+  return CDN_PUBLIC_PATH;
+}
 
 export function RemoveBackgroundTool() {
   const [phase, setPhase] = useState<string | null>(null);
@@ -25,10 +36,11 @@ export function RemoveBackgroundTool() {
     setPhase('Loading AI model (first time may take a moment)…');
 
     try {
+      const publicPath = await resolvePublicPath();
       const { removeBackground, preload } = await import('@imgly/background-removal');
 
       await preload({
-        publicPath: MODEL_PUBLIC_PATH,
+        publicPath,
         model: 'small',
         progress: (key, current, total) => {
           if (total > 0) {
@@ -41,7 +53,7 @@ export function RemoveBackgroundTool() {
 
       setPhase('Removing background…');
       const blob = await removeBackground(file, {
-        publicPath: MODEL_PUBLIC_PATH,
+        publicPath,
         model: 'small',
         output: { format: 'image/png' },
       });
@@ -51,7 +63,7 @@ export function RemoveBackgroundTool() {
       const message = e instanceof Error ? e.message : 'Background removal failed';
       setError(
         message.includes('metadata') || message.includes('fetch')
-          ? 'AI model files missing. Run: npm install && npm run build'
+          ? 'AI model files missing. Stop the server, run npm install && npm run build, then restart.'
           : message,
       );
     } finally {
