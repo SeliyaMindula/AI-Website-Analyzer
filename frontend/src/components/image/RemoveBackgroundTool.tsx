@@ -4,9 +4,8 @@ import { useState } from 'react';
 import { ImageUpload } from '@/components/ImageUpload';
 import { downloadBlob, formatBytes } from '@/lib/image-utils';
 
-/** Model assets served from jsDelivr (allowed by our CSP). */
-const MODEL_PUBLIC_PATH =
-  'https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.4.5/dist/';
+/** Self-hosted from public/bg-removal (copied at build via scripts/copy-bg-models.mjs). */
+const MODEL_PUBLIC_PATH = '/bg-removal/';
 
 export function RemoveBackgroundTool() {
   const [phase, setPhase] = useState<string | null>(null);
@@ -23,14 +22,14 @@ export function RemoveBackgroundTool() {
     });
     setResultBlob(null);
     setOriginalName(file.name);
-    setPhase('Downloading AI model (~40 MB, first time only)…');
+    setPhase('Loading AI model (first time may take a moment)…');
 
     try {
       const { removeBackground, preload } = await import('@imgly/background-removal');
 
       await preload({
         publicPath: MODEL_PUBLIC_PATH,
-        model: 'isnet_quint8',
+        model: 'small',
         progress: (key, current, total) => {
           if (total > 0) {
             setPhase(`Loading model… ${Math.round((current / total) * 100)}%`);
@@ -43,7 +42,7 @@ export function RemoveBackgroundTool() {
       setPhase('Removing background…');
       const blob = await removeBackground(file, {
         publicPath: MODEL_PUBLIC_PATH,
-        model: 'isnet_quint8',
+        model: 'small',
         output: { format: 'image/png' },
       });
       setResultBlob(blob);
@@ -51,8 +50,8 @@ export function RemoveBackgroundTool() {
     } catch (e) {
       const message = e instanceof Error ? e.message : 'Background removal failed';
       setError(
-        message.includes('fetch')
-          ? 'Could not download the AI model. Check your internet connection and try again.'
+        message.includes('metadata') || message.includes('fetch')
+          ? 'AI model files missing. Run: npm install && npm run build'
           : message,
       );
     } finally {
