@@ -1,5 +1,7 @@
 'use client';
 
+import { normalizeUrl } from '@/lib/url-utils';
+
 export function UrlForm({
   onSubmit,
   loading,
@@ -17,14 +19,18 @@ export function UrlForm({
       onSubmit={(e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
-        onSubmit(String(fd.get('url') ?? ''));
+        const raw = String(fd.get('url') ?? '').trim();
+        if (!raw) return;
+        onSubmit(normalizeUrl(raw));
       }}
     >
       <input
         name="url"
-        type="url"
+        type="text"
         required
-        placeholder="https://example.com"
+        inputMode="url"
+        autoComplete="url"
+        placeholder="example.com"
         className="wp-input"
       />
       <button type="submit" disabled={loading} className="wp-btn">
