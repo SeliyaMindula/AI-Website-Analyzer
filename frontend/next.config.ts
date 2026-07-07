@@ -13,6 +13,9 @@ const connectSrc = [
   apiOrigin,
   'https://webpulse-api.onrender.com',
   'https://cdn.jsdelivr.net',
+  'https://www.google-analytics.com',
+  'https://analytics.google.com',
+  'https://region1.google-analytics.com',
 ];
 if (process.env.NODE_ENV === 'development') {
   connectSrc.push('http://localhost:3001');
@@ -20,9 +23,9 @@ if (process.env.NODE_ENV === 'development') {
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https:",
+  "img-src 'self' data: blob: https: https://www.google-analytics.com",
   `connect-src ${connectSrc.join(' ')}`,
   "worker-src 'self' blob:",
   "child-src 'self' blob:",
