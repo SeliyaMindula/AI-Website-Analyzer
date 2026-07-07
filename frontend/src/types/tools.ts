@@ -48,3 +48,33 @@ export interface IpLookupResult {
   timezone: string;
   lookedUpAt: string;
 }
+
+export type LinkAssetType = 'link' | 'image' | 'script' | 'stylesheet';
+
+export interface BrokenLinkEntry {
+  url: string;
+  statusCode: number | null;
+  error?: string;
+  foundOn: string[];
+  type: LinkAssetType;
+}
+
+export interface CrawledPage {
+  url: string;
+  statusCode: number;
+  linkCount: number;
+}
+
+export interface BrokenLinksResult {
+  startUrl: string;
+  hostname: string;
+  pagesCrawled: number;
+  linksChecked: number;
+  brokenCount: number;
+  okCount: number;
+  limitReached: boolean;
+  limitReason?: 'pages' | 'links' | 'timeout';
+  checkedAt: string;
+  broken: BrokenLinkEntry[];
+  pages: CrawledPage[];
+}

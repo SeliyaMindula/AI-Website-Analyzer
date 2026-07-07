@@ -6,6 +6,7 @@ import { DnsModule } from './dns/dns.module';
 import { IpModule } from './ip/ip.module';
 import { ReportModule } from './report/report.module';
 import { HeadersModule } from './headers/headers.module';
+import { LinksModule } from './links/links.module';
 import { SslModule } from './ssl/ssl.module';
 import { UptimeModule } from './uptime/uptime.module';
 
@@ -16,6 +17,7 @@ import { UptimeModule } from './uptime/uptime.module';
     AnalyzeModule,
     ReportModule,
     HeadersModule,
+    LinksModule,
     DnsModule,
     IpModule,
     SslModule,

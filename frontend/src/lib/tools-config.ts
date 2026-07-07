@@ -5,6 +5,7 @@ import {
   FileCode2,
   FileImage,
   Globe,
+  Link2Off,
   MapPin,
   Maximize2,
   ScanSearch,
@@ -38,6 +39,12 @@ export const diagnosticsTools: ToolItem[] = [
     title: 'HTTP Headers',
     description: 'Inspect response headers — security, cache, server, and more.',
     icon: FileCode2,
+  },
+  {
+    href: '/broken-links',
+    title: 'Broken Links',
+    description: 'Crawl your site and find dead links, images, scripts, and CSS.',
+    icon: Link2Off,
   },
   {
     href: '/dns',
