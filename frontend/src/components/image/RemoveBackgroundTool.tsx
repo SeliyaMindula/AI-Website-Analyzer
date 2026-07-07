@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { ImageUpload } from '@/components/ImageUpload';
 import { downloadBlob, formatBytes } from '@/lib/image-utils';
 
-/** Same-origin path; production proxies to IMG.LY CDN via next.config rewrites. */
-const PUBLIC_PATH = '/bg-removal/';
+/** Must be absolute — the AI library uses `new URL(path, publicPath)`. */
+function modelPublicPath(): string {
+  if (typeof window === 'undefined') return '/bg-removal/';
+  return `${window.location.origin}/bg-removal/`;
+}
 
 export function RemoveBackgroundTool() {
   const [phase, setPhase] = useState<string | null>(null);
@@ -25,7 +28,7 @@ export function RemoveBackgroundTool() {
     setPhase('Loading AI model (first time may take a moment)…');
 
     try {
-      const publicPath = PUBLIC_PATH;
+      const publicPath = modelPublicPath();
       const { removeBackground, preload } = await import('@imgly/background-removal');
 
       await preload({

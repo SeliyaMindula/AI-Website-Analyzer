@@ -25,7 +25,11 @@ export class HttpFetcherService {
         if (response.status >= 300 && response.status < 400) {
           const location = response.headers.get('location');
           if (!location) break;
-          currentUrl = new URL(location, currentUrl).href;
+          try {
+            currentUrl = new URL(location, currentUrl).href;
+          } catch {
+            throw new BadRequestException('Invalid redirect from website');
+          }
           assertPublicUrl(currentUrl);
           redirects++;
           continue;
