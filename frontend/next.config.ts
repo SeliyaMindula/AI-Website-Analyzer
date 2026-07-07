@@ -18,6 +18,8 @@ const connectSrc = [
   'https://*.google-analytics.com',
   'https://analytics.google.com',
   'https://region1.google-analytics.com',
+  'https://www.google.com',
+  'https://stats.g.doubleclick.net',
 ];
 if (process.env.NODE_ENV === 'development') {
   connectSrc.push('http://localhost:3001');

@@ -4,8 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 function sendPageView(measurementId: string, pathname: string) {
-  window.gtag?.('event', 'page_view', {
-    send_to: measurementId,
+  window.gtag?.('config', measurementId, {
     page_path: pathname,
     page_location: window.location.href,
     page_title: document.title,
