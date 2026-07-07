@@ -6,7 +6,7 @@ import { toolGroups } from '@/lib/tools-config';
 export const metadata: Metadata = pageMetadata({
   title: 'Free Website Diagnostics Tools',
   description:
-    'Free online tools — website SEO analysis, HTTP headers, DNS, SSL, uptime, IP lookup, and image editing (background removal, compress, resize, convert).',
+    'Free online tools — website SEO analysis, HTTP headers, DNS, SSL, uptime, IP lookup, and image editing (compress, resize, convert).',
 });
 
 export default function HubPage() {

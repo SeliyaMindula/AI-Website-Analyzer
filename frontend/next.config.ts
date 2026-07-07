@@ -20,10 +20,10 @@ if (process.env.NODE_ENV === 'development') {
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
-  `connect-src ${connectSrc.join(' ')} https://staticimgly.com`,
+  `connect-src ${connectSrc.join(' ')}`,
   "worker-src 'self' blob:",
   "child-src 'self' blob:",
   "font-src 'self'",
@@ -44,19 +44,7 @@ const securityHeaders = [
   },
 ];
 
-const BG_REMOVAL_CDN =
-  'https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist';
-
 const nextConfig: NextConfig = {
-  async rewrites() {
-    // Proxy AI model assets through same origin (public/ files take precedence when present).
-    return [
-      {
-        source: '/bg-removal/:path*',
-        destination: `${BG_REMOVAL_CDN}/:path*`,
-      },
-    ];
-  },
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];
   },

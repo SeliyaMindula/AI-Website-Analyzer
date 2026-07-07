@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const SITE_NAME = 'WebPulses AI';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.webpulsesai.com';
 export const SITE_DESCRIPTION =
-  'Free online tools for website SEO analysis, HTTP headers, DNS, SSL, uptime, IP geolocation, and image editing — background removal, compress, resize, and convert.';
+  'Free online tools for website SEO analysis, HTTP headers, DNS, SSL, uptime, IP geolocation, and image editing — compress, resize, and convert.';
 
 export const SITE_KEYWORDS = [
   'website analyzer',
@@ -14,7 +14,6 @@ export const SITE_KEYWORDS = [
   'SSL certificate check',
   'uptime monitor',
   'IP geolocation',
-  'remove background',
   'compress image',
   'resize image',
   'convert image',
@@ -86,7 +85,6 @@ export const ROUTES = [
   { path: '/ssl', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/uptime', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/ip', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/image/remove-background', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/image/compress', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/image/resize', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/image/convert', priority: 0.9, changeFrequency: 'weekly' as const },

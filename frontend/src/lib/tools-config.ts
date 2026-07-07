@@ -1,7 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import {
   Activity,
-  Eraser,
   FileCode2,
   FileImage,
   Globe,
@@ -73,12 +72,6 @@ export const diagnosticsTools: ToolItem[] = [
 ];
 
 export const imageTools: ToolItem[] = [
-  {
-    href: '/image/remove-background',
-    title: 'Remove Background',
-    description: 'AI-powered background removal — runs privately in your browser.',
-    icon: Eraser,
-  },
   {
     href: '/image/compress',
     title: 'Compress Image',
