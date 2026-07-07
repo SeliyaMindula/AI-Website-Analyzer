@@ -13,7 +13,9 @@ const connectSrc = [
   apiOrigin,
   'https://webpulse-api.onrender.com',
   'https://cdn.jsdelivr.net',
+  'https://www.googletagmanager.com',
   'https://www.google-analytics.com',
+  'https://*.google-analytics.com',
   'https://analytics.google.com',
   'https://region1.google-analytics.com',
 ];
