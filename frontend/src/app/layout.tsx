@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Providers } from "@/components/Providers";
+import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@/components/GoogleAnalyticsScripts";
 import { jsonLd, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-config";
 import "./globals.css";
@@ -63,6 +64,7 @@ export default function RootLayout({
           <SiteFooter />
         </Providers>
         <GoogleAnalytics />
+        <Analytics />
       </body>
     </html>
   );
